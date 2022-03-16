@@ -13,6 +13,9 @@
     <script src="https://unpkg.com/chart.js@3"></script>
     <script src="https://unpkg.com/chartjs-chart-wordcloud@3"></script>
     <script src="wordcloud.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -99,7 +102,7 @@
         <div class="app-main">
             <div class="main-header-line">
                 <h1>Text Analyzer</h1>
-                <div class="action-buttons">
+                <!-- <div class="action-buttons">
                     <button class="open-right-area">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -116,7 +119,7 @@
                             <line x1="3" y1="18" x2="21" y2="18" />
                         </svg>
                     </button>
-                </div>
+                </div> -->
             </div>
             <div class="chart-row three">
                 <div class="chart-container-wrapper">
@@ -182,7 +185,7 @@
                     <div class="chart-container input">
                         <div class="chart-container-header">
                             <h2>Text Input</h2>
-                            <span href="#">Enter text into this block</span>
+                            <span href="#">Enter text into block</span>
                         </div>
                         <div class="progress-bar-info">
                             <textarea id="text_input" name="story" cols="60" rows="10"></textarea>
@@ -220,7 +223,7 @@
                     <div class="chart-container applicants">
                         <div class="chart-container-header">
                             <h2>BarChart</h2>
-                            <span>Top10</span>
+                            <span>Top 10 keywords</span>
                         </div>
                         <div class="bar_chart_div">
                             <canvas id="bar_chart"></canvas>
@@ -271,7 +274,7 @@
                     <div class="chart-container">
                         <div class="chart-container-header">
                             <h2>WordCloud</h2>
-                            <span>Last 30 days</span>
+                            <span></span>
                         </div>
                         <div class="line-chart">
                             <canvas id="canvas"></canvas>
@@ -313,7 +316,23 @@
                         alt="profile">
                 </div>
                 <p class="profile-text">Kuan-Lin Chen</p>
+                <p class="profile-text"></p>
                 <p class="profile-subtext">Email: brandon80229@gmail.com</p>
+                <br>
+                <div class="wrapper">
+                    <a href="https://www.instagram.com/_kuan.lin/?hl=zh-tw" target="_blank">
+                        <div class="icon instagram">
+                            <div class="tooltip">Instagram</div>
+                            <span><i class="fab fa-instagram"></i></span>
+                        </div>
+                    </a>
+                    <a href="https://github.com/brandon111586" target="_blank">
+                        <div class="icon github">
+                            <div class="tooltip">Github</div>
+                            <span><i class="fab fa-github"></i></span>
+                        </div>
+                    </a>
+                </div>
             </div>
             <!-- <div class="app-right-content">
                 <div class="app-right-section">

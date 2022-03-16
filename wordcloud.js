@@ -4,23 +4,23 @@ call_jieba_cut(_text, function (_result) {
 
   var difference = _result.filter((x) => stopword.indexOf(x) === -1); //過濾停用字
 
-  //統計每個詞出現的次數
-  var ary = {};
+  //統計每個詞出現的次數{"你":2,"我":3}
+  var word_number = {};
   for (let i = 0; i < difference.length; i++) {
-    if (difference[i] in ary) {
-      ary[difference[i]] = ary[difference[i]] + 1;
+    if (difference[i] in word_number) {
+      word_number[difference[i]] = word_number[difference[i]] + 1;
     } else {
-      ary[difference[i]] = 1;
+      word_number[difference[i]] = 1;
     }
   }
-  //   console.log(ary);
+  //   console.log(word_number);
 
   //轉換成[{key:'',value:''}]形式
   var words = [];
-  for (let i = 0; i < Object.keys(ary).length; i++) {
+  for (let i = 0; i < Object.keys(word_number).length; i++) {
     let keyvalue = {};
-    keyvalue["key"] = Object.keys(ary)[i];
-    keyvalue["value"] = Object.values(ary)[i];
+    keyvalue["key"] = Object.keys(word_number)[i];
+    keyvalue["value"] = Object.values(word_number)[i];
 
     words.push(keyvalue);
   }
@@ -3858,27 +3858,35 @@ function draw_wordcloud(_text) {
 
     var difference = _result.filter((x) => stopword.indexOf(x) === -1); //過濾停用字
 
+    difference = difference.filter((word) => word.length > 1);
+    console.log(difference);
     //統計每個詞出現的次數
-    var ary = {};
+    var word_number = {};
     for (let i = 0; i < difference.length; i++) {
-      if (difference[i] in ary) {
-        ary[difference[i]] = ary[difference[i]] + 1;
+      if (difference[i] in word_number) {
+        word_number[difference[i]] = word_number[difference[i]] + 1;
       } else {
-        ary[difference[i]] = 1;
+        word_number[difference[i]] = 1;
       }
     }
-    console.log(ary);
-
+    console.log(word_number);
+    // var word_number = {};
+    // for (let i = 0; i < Object.entries(word_number1).length; i++) {
+    //   if (Object.entries(word_number1)[i][0].length > 1) {
+    //     word_number.push(Object.entries(word_number1)[i]);
+    //   }
+    // }
+    // console.log(word_number);
     //轉換成[{key:'',value:''}]形式
     var words = [];
-    for (let i = 0; i < Object.keys(ary).length; i++) {
+    for (let i = 0; i < Object.keys(word_number).length; i++) {
       let keyvalue = {};
-      keyvalue["key"] = Object.keys(ary)[i];
-      keyvalue["value"] = Object.values(ary)[i];
+      keyvalue["key"] = Object.keys(word_number)[i];
+      keyvalue["value"] = Object.values(word_number)[i];
 
       words.push(keyvalue);
     }
-    console.log(words);
+    // console.log(words);
 
     // 把原本圖的canvas直接刪掉重畫一張 (wordcloud)
     $("#canvas").remove();
@@ -3914,41 +3922,92 @@ function draw_wordcloud(_text) {
         },
       }
     );
+
     // 把原本圖的canvas直接刪掉重畫一張 (barchart)
     $("#bar_chart").remove();
     $(".bar_chart_div").append('<canvas id="bar_chart"></canvas>');
-    const ctx = document.getElementById("bar_chart").getContext("2d");
-    const myChart = new Chart(ctx, {
+    sort_words = Object.entries(word_number).sort(function (a, b) {
+      return a[1] < b[1] ? 1 : -1;
+    });
+    console.log(sort_words);
+    console.log(sort_words[0][0]);
+    var barchart_words = [];
+    var barchart_frequency = [];
+
+    if (sort_words.length > 10) {
+      for (let i = 0; i < 10; i++) {
+        barchart_words.push(sort_words[i][0]);
+        barchart_frequency.push(sort_words[i][1]);
+      }
+    } else {
+      for (let i = 0; i < sort_words.length; i++) {
+        console.log(sort_words[i][0]);
+        barchart_words.push(sort_words[i][0]);
+        barchart_frequency.push(sort_words[i][1]);
+      }
+    }
+    console.log(sort_words);
+
+    const bar_chart = document.getElementById("bar_chart").getContext("2d");
+    const barchart = new Chart(bar_chart, {
       type: "bar",
       data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: barchart_words,
         datasets: [
           {
-            label: "# of Votes",
-            data: [12, 19, 3, 5, 2, 3],
+            label: "",
+            data: barchart_frequency,
             backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
+              "rgb(53,111,227,0.3)",
+              "rgb(53,111,227,0.3)",
+              "rgb(53,111,227,0.3)",
+              "rgb(53,111,227,0.3)",
+              "rgb(53,111,227,0.3)",
+              "rgb(53,111,227,0.3)",
+              "rgb(53,111,227,0.3)",
+              "rgb(53,111,227,0.3)",
+              "rgb(53,111,227,0.3)",
+              "rgb(53,111,227,0.3)",
             ],
             borderColor: [
-              "rgba(255, 99, 132, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
+              "rgb(53,111,227)",
+              "rgb(53,111,227)",
+              "rgb(53,111,227)",
+              "rgb(53,111,227)",
+              "rgb(53,111,227)",
+              "rgb(53,111,227)",
+              "rgb(53,111,227)",
+              "rgb(53,111,227)",
+              "rgb(53,111,227)",
+              "rgb(53,111,227)",
             ],
+            color: "#bec0c6",
             borderWidth: 1,
           },
         ],
       },
       options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        indexAxis: "y",
         scales: {
           y: {
+            ticks: {
+              color: "#fff",
+              size: 20,
+            },
+
+            beginAtZero: true,
+          },
+          x: {
+            ticks: {
+              color: "#fff",
+              size: 20,
+            },
+
             beginAtZero: true,
           },
         },
