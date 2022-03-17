@@ -3904,7 +3904,7 @@ function draw_wordcloud(_text) {
           datasets: [
             {
               label: "",
-              data: words.map((d) => 10 + d.value * 3),
+              data: words.map((d) => 10 + d.value * 5),
               color: "#c0c2c8",
             },
           ],
