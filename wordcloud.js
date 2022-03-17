@@ -55,7 +55,6 @@ call_jieba_cut(_text, function (_result) {
       },
     },
   });
-  console.log(chart);
 });
 var stopword = [
   "!",
@@ -1960,7 +1959,6 @@ function draw_wordcloud(_text) {
     $("#bar_chart").remove();
   }
   call_jieba_cut(_text, function (_result) {
-    console.log(_text);
     //_result 斷詞結果
     var stopword = [
       "!",
