@@ -8,4 +8,4 @@
 
 連結:https://brandon111586.github.io/Text_Analyzer/
 
-![image][https://github.com/brandon111586/Text_Analyzer/blob/main/text%20analyzer.PNG]
+![image](https://github.com/brandon111586/Text_Analyzer/blob/main/text%20analyzer.PNG)
