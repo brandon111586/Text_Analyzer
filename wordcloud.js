@@ -35,7 +35,7 @@ call_jieba_cut(_text, function (_result) {
       datasets: [
         {
           label: "",
-          data: words.map((d) => 10 + d.value * 10),
+          data: words.map((d) => 10 + d.value * 2),
           color: "#fff",
         },
       ],
@@ -3889,7 +3889,7 @@ function draw_wordcloud(_text) {
 
       words.push(keyvalue);
     }
-    // console.log(words);
+    console.log(words);
 
     // 把原本圖的canvas直接刪掉重畫一張 (wordcloud)
     $("#canvas").remove();
@@ -3904,7 +3904,7 @@ function draw_wordcloud(_text) {
           datasets: [
             {
               label: "",
-              data: words.map((d) => 10 + d.value * 10),
+              data: words.map((d) => 10 + d.value * 3),
               color: "#c0c2c8",
             },
           ],
