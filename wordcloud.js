@@ -35,7 +35,7 @@ call_jieba_cut(_text, function (_result) {
       datasets: [
         {
           label: "",
-          data: words.map((d) => 10 + d.value * 2),
+          data: words.map((d) => 10 + d.value * 5),
           color: "#fff",
         },
       ],
