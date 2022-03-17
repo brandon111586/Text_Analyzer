@@ -1,4 +1,4 @@
-var _text = "  ";
+var _text = "";
 call_jieba_cut(_text, function (_result) {
   //_result 斷詞結果
 
@@ -3958,9 +3958,9 @@ function draw_wordcloud(_text) {
             label: "",
             data: barchart_frequency,
             backgroundColor: [
-              "rgb(53,111,227,0.3)",
-              "rgb(53,111,227,0.3)",
-              "rgb(53,111,227,0.3)",
+              "rgb(255, 99, 132, 0.3)",
+              "rgba(255, 159, 64, 0.2)",
+              "rgba(255, 159, 64, 0.2)",
               "rgb(53,111,227,0.3)",
               "rgb(53,111,227,0.3)",
               "rgb(53,111,227,0.3)",
@@ -3970,9 +3970,9 @@ function draw_wordcloud(_text) {
               "rgb(53,111,227,0.3)",
             ],
             borderColor: [
-              "rgb(53,111,227)",
-              "rgb(53,111,227)",
-              "rgb(53,111,227)",
+              "rgb(255, 99, 132)",
+              "rgb(255, 159, 64)",
+              "rgb(255, 159, 64)",
               "rgb(53,111,227)",
               "rgb(53,111,227)",
               "rgb(53,111,227)",
@@ -3987,6 +3987,7 @@ function draw_wordcloud(_text) {
         ],
       },
       options: {
+        maintainAspectRatio: false, //讓canvas大小可以符合div，並且可以自訂大小
         plugins: {
           legend: {
             display: false,
@@ -3997,13 +3998,14 @@ function draw_wordcloud(_text) {
           y: {
             ticks: {
               color: "#fff",
-              size: 20,
+              size: 30,
             },
 
             beginAtZero: true,
           },
           x: {
             ticks: {
+              stepSize: 1,
               color: "#fff",
               size: 20,
             },
@@ -4018,4 +4020,7 @@ function draw_wordcloud(_text) {
 function text_submit() {
   var _text = document.getElementById("text_input").value;
   draw_wordcloud(_text);
+}
+function text_clean() {
+  document.getElementById("text_input").value = "";
 }
