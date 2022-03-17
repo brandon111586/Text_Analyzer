@@ -1955,7 +1955,12 @@ var stopword = [
   "\\",
 ];
 function draw_wordcloud(_text) {
+  //若輸入欄沒有值就把barchart也刪掉(wordcloud會自己消失)
+  if (_text == "") {
+    $("#bar_chart").remove();
+  }
   call_jieba_cut(_text, function (_result) {
+    console.log(_text);
     //_result 斷詞結果
     var stopword = [
       "!",
@@ -3854,12 +3859,12 @@ function draw_wordcloud(_text) {
       "",
       "\\",
     ];
-    console.log(_text);
+    // console.log(_text);
 
     var difference = _result.filter((x) => stopword.indexOf(x) === -1); //過濾停用字
 
     difference = difference.filter((word) => word.length > 1);
-    console.log(difference);
+    // console.log(difference);
     //統計每個詞出現的次數
     var word_number = {};
     for (let i = 0; i < difference.length; i++) {
@@ -3869,7 +3874,7 @@ function draw_wordcloud(_text) {
         word_number[difference[i]] = 1;
       }
     }
-    console.log(word_number);
+    // console.log(word_number);
     // var word_number = {};
     // for (let i = 0; i < Object.entries(word_number1).length; i++) {
     //   if (Object.entries(word_number1)[i][0].length > 1) {
@@ -3929,8 +3934,8 @@ function draw_wordcloud(_text) {
     sort_words = Object.entries(word_number).sort(function (a, b) {
       return a[1] < b[1] ? 1 : -1;
     });
-    console.log(sort_words);
-    console.log(sort_words[0][0]);
+    // console.log(sort_words);
+    // console.log(sort_words[0][0]);
     var barchart_words = [];
     var barchart_frequency = [];
 
@@ -3941,12 +3946,12 @@ function draw_wordcloud(_text) {
       }
     } else {
       for (let i = 0; i < sort_words.length; i++) {
-        console.log(sort_words[i][0]);
+        // console.log(sort_words[i][0]);
         barchart_words.push(sort_words[i][0]);
         barchart_frequency.push(sort_words[i][1]);
       }
     }
-    console.log(sort_words);
+    // console.log(sort_words);
 
     const bar_chart = document.getElementById("bar_chart").getContext("2d");
     const barchart = new Chart(bar_chart, {
