@@ -3872,14 +3872,7 @@ function draw_wordcloud(_text) {
         word_number[difference[i]] = 1;
       }
     }
-    // console.log(word_number);
-    // var word_number = {};
-    // for (let i = 0; i < Object.entries(word_number1).length; i++) {
-    //   if (Object.entries(word_number1)[i][0].length > 1) {
-    //     word_number.push(Object.entries(word_number1)[i]);
-    //   }
-    // }
-    // console.log(word_number);
+
     //轉換成[{key:'',value:''}]形式
     var words = [];
     for (let i = 0; i < Object.keys(word_number).length; i++) {
