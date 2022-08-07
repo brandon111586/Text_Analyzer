@@ -1,5 +1,6 @@
 var _text = "";
-call_jieba_cut(_text, function (_result) {
+var _custom_dict = [["烏克蘭", 99999999, "n"]];
+call_jieba_cut(_text ,_custom_dict, function (_result) {
   //_result 斷詞結果
 
   var difference = _result.filter((x) => stopword.indexOf(x) === -1); //過濾停用字
